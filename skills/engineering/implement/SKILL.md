@@ -12,7 +12,7 @@ If the user passes ticket references, fetch each from the issue tracker and stat
 
 Every ticket gets the whole cycle below, as if it were its own run. Sharing the window is only about reusing what you already read: **never merge tickets into one pass, one commit or one record.**
 
-1. **Gate.** Before starting each ticket, run `python <skills-root>/scripts/context_gate.py`.
+1. **Gate.** Before starting each ticket, run `python <skill-dir>/scripts/context_gate.py`.
    - exit 0: go on.
    - exit 1: do **not** start the ticket. Stop, say how many tickets are done and which remain, and tell the user to run `/compact` and call `/implement` again with the remaining ones.
    - exit 2 (no reading): estimate instead. Add up the size of the files the ticket touches, divided by 4, plus the tickets already done in this window; stop if the total passes ~150k tokens.
@@ -23,7 +23,7 @@ Every ticket gets the whole cycle below, as if it were its own run. Sharing the 
 5. **Review.** Call the Skill tool with "code-review" to review this ticket's work.
 6. **Commit** to the current branch.
 7. **Record.** Update the ticket in the issue tracker: set its `Status:` line to `done` (the repo convention; add a short note in parentheses if something is left out, e.g. `done (falta só a captura)`), tick the checkboxes that were delivered, and make sure the `## Registro` / `## Comments` section lists the commit and what was not done. If the ticket has an `Entrega:` line, add one proof line per AC there: `- AC-1.1 -> tests/test_x.py::test_name` or `- AC-1.2 -> visual: <capture path>`. Commit that update too (a small docs commit is fine). Never leave an implemented ticket as `ready-for-agent`.
-8. **Check.** Run `python <skills-root>/scripts/check_tickets.py <feature-dir> --ticket <NN>`. Fix what it reports and rerun.
+8. **Check.** Run `python <skill-dir>/scripts/check_tickets.py <feature-dir> --ticket <NN>`. Fix what it reports and rerun.
 
 Then the next ticket, back to step 1.
 
@@ -34,3 +34,5 @@ The scripts catch structural gaps; they do not judge. If one blocks you and you 
 ## The full suite
 
 Do NOT run the full test suite on your own: it can take many minutes. When the work is done, say which tests you ran and ask the user whether to run the full suite now or later (for example once the whole branch of work is finished, which `/finish-spec` does once). Run it only after they confirm. If the project supports parallel runs (for example `pytest -n auto`), use that.
+
+`<skill-dir>` is the directory that contains this SKILL.md; its `scripts/` folder ships with the skill.

@@ -20,7 +20,7 @@ Check with the user that these seams match their expectations.
 
 3. Write the spec using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
 
-4. Run `python <skills-root>/scripts/check_spec.py <feature-dir> --spec-only` (the folder holding `spec.md`). It fails if an acceptance criterion has no Proof. Fix the spec and rerun until it exits 0. If the script is wrong for this spec, you may go on, but say why in `Further Notes`.
+4. Run `python <skill-dir>/scripts/check_spec.py <feature-dir> --spec-only` (the folder holding `spec.md`). It fails if an acceptance criterion has no Proof. Fix the spec and rerun until it exits 0. If the script is wrong for this spec, you may go on, but say why in `Further Notes`.
 
 5. If the spec came from a roadmap stage, set that row to `specced` and fill its `Spec` column.
 
@@ -91,3 +91,5 @@ A description of the things that are out of scope for this spec.
 Any further notes about the feature.
 
 </spec-template>
+
+`<skill-dir>` is the directory that contains this SKILL.md; its `scripts/` folder ships with the skill.

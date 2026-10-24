@@ -15,8 +15,8 @@ The issue tracker should have been provided to you. If not, tell the user to run
 1. **Locate** the spec folder (`.scratch/<feature>/` on a local tracker) and the fixed point (the commit where the integration branch left main). Ask only if you cannot tell.
 
 2. **Structural checks** (they exit 1 on a gap):
-   - `python <skills-root>/scripts/check_spec.py <feature-dir>`: every AC has a proof and a ticket.
-   - `python <skills-root>/scripts/check_tickets.py <feature-dir> --stale-visual`: every `done` ticket cites a commit that exists, and every AC it delivers has a proof line. It also lists the visual ACs that need a fresh look.
+   - `python <skill-dir>/scripts/check_spec.py <feature-dir>`: every AC has a proof and a ticket.
+   - `python <skill-dir>/scripts/check_tickets.py <feature-dir> --stale-visual`: every `done` ticket cites a commit that exists, and every AC it delivers has a proof line. It also lists the visual ACs that need a fresh look.
 
    Fix **mechanical** gaps yourself (a missing proof line, a status left as `ready-for-agent`) and commit the fix. A gap that needs code or a decision is not yours to fix: go to step 6 and report it.
 
@@ -37,3 +37,5 @@ The issue tracker should have been provided to you. If not, tell the user to run
 ## Scripts can be overridden, with a reason
 
 If a script blocks and you are sure it is wrong, go on and write `Script override: <what and why>` in the ticket's `## Comments`, and say so in the final reply. Never override silently.
+
+`<skill-dir>` is the directory that contains this SKILL.md; its `scripts/` folder ships with the skill.

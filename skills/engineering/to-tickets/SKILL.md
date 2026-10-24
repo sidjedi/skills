@@ -70,7 +70,7 @@ Publish the approved tickets. **How** depends on the tracker `/setup-matt-pocock
 - **Local files** → write one file per ticket under `.scratch/<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01` in dependency order (blockers first). Each file's "Blocked by" lists the numbers/titles it depends on. Use the per-ticket file template below: one ticket per file, never a single combined file.
 - **A real issue tracker (GitHub, Linear, …)** → publish one issue per ticket in dependency order (blockers first) so each ticket's blocking edges can reference real identifiers. Use the platform's native blocking relationship where it has one; otherwise set each ticket's "Blocked by" to the blocking issues. If the source was an existing issue, make each ticket its sub-issue (tracker doc's operation). Apply the `ready-for-agent` triage label unless instructed otherwise; the tickets are agent-grabbable by construction.
 
-After publishing, run `python <skills-root>/scripts/check_spec.py <feature-dir>`. It fails if an AC has no ticket or a ticket cites an id that is not in the spec. Fix and rerun until it exits 0 (a wrong script result may be overridden, with the reason noted in the ticket).
+After publishing, run `python <skill-dir>/scripts/check_spec.py <feature-dir>`. It fails if an AC has no ticket or a ticket cites an id that is not in the spec. Fix and rerun until it exits 0 (a wrong script result may be overridden, with the reason noted in the ticket).
 
 Work the **frontier**: any ticket whose blockers are all done. For a purely linear chain that means top to bottom.
 
@@ -119,3 +119,5 @@ Delivers: `US-…`, `AC-…`. Size: P/M/G.
 </issue-template>
 
 In either form, avoid specific file paths or code snippets: they go stale fast. Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it and note briefly that it came from a prototype. Trim to the decision-rich parts, not a working demo, just the important bits.
+
+`<skill-dir>` is the directory that contains this SKILL.md; its `scripts/` folder ships with the skill.
