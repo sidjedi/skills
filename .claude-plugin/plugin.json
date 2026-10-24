@@ -31,6 +31,8 @@
     "./skills/engineering/wayfinder",
     "./skills/engineering/implement",
     "./skills/engineering/implement-spec",
+    "./skills/engineering/to-roadmap",
+    "./skills/engineering/finish-spec",
     "./skills/engineering/prototype",
     "./skills/engineering/research",
     "./skills/engineering/domain-modeling",

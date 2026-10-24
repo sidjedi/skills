@@ -71,6 +71,11 @@ Issue both sub-agent calls together, in the foreground, and aggregate the report
 - The path or fetched contents of the spec.
 - The brief: "Report: (a) requirements the spec asked for that are missing or partial; (b) behaviour in the diff that wasn't asked for (scope creep); (c) requirements that look implemented but where the implementation looks wrong. Quote the spec line for each finding. Under 400 words."
 
+**Additions, used only when they apply** (nothing above is reduced):
+
+- If the spec has `AC-` ids, add to the brief: "After the findings, list every `AC-` as PASS or FAIL with its evidence (`file:line`, test id, or the visual capture noted in the ticket). The 400 words limit covers the findings; this list is extra."
+- If the diff includes finished tickets, add: "(d) any ticket in the diff that is not `done`, or whose `## Registro`/`## Comments` lacks a commit or a proof line for an AC it delivers; (e) tests added in the diff that no AC cites, as possible excess (the project's `AGENTS.md` limits tests); (f) anything visual that was verified by a test instead of the browser, against the project's `AGENTS.md`."
+
 If the spec is missing, skip the Spec sub-agent and note this in the final report.
 
 ### 5. Aggregate

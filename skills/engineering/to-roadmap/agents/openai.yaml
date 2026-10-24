@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Roadmap"
+  short_description: "Plan a big project as vertical stages"
+policy:
+  allow_implicit_invocation: false
