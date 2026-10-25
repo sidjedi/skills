@@ -48,7 +48,7 @@ This list of user stories should be extremely extensive and cover all aspects of
 
 ## Acceptance Criteria
 
-One row per verifiable behaviour, grouped under the story it serves (`AC-<story>.<n>`). Each row says **how it will be proven**. Keep it to observable behaviour, not implementation.
+One row per verifiable behaviour, grouped under the story it serves (`AC-<story>.<n>`). Each row says **how it will be proven**. Keep it to observable behaviour, not implementation. Cover the paths that are not the happy one: for each screen, route or action, give its error, empty, unauthorised and invalid-input behaviours their own rows, or leave them out on purpose and say so under Out of Scope.
 
 | ID | Criterion | Proof |
 |----|-----------|-------|

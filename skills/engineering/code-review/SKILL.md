@@ -76,6 +76,8 @@ Issue both sub-agent calls together, in the foreground, and aggregate the report
 - If the spec has `AC-` ids, add to the brief: "After the findings, list every `AC-` as PASS or FAIL with its evidence (`file:line`, test id, or the visual capture noted in the ticket). The 400 words limit covers the findings; this list is extra."
 - If the diff includes finished tickets, add: "(d) any ticket in the diff that is not `done`, or whose `## Registro`/`## Comments` lacks a commit or a proof line for an AC it delivers; (e) tests added in the diff that no AC cites, as possible excess (the project's `AGENTS.md` limits tests); (f) anything visual that was verified by a test instead of the browser, against the project's `AGENTS.md`."
 
+- If the diff adds tests, add to the Spec brief: "(g) for each added test, say whether it would still pass under a wrong implementation (it asserts a mock, repeats the code under test, or checks nothing observable); name the test."
+
 If the spec is missing, skip the Spec sub-agent and note this in the final report.
 
 ### 5. Aggregate
