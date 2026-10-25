@@ -1,0 +1,15 @@
+// Inside the statusline's node script, after `cw` (= j.context_window) is read.
+// Writes the current context size where the `implement` gate reads it.
+try {
+  const cu = cw.current_usage || {};
+  const fromUsage = (cu.input_tokens || 0) + (cu.cache_creation_input_tokens || 0) + (cu.cache_read_input_tokens || 0);
+  const fromPct = cw.context_window_size && cw.used_percentage ? Math.round(cw.context_window_size * cw.used_percentage / 100) : 0;
+  const ctx = fromUsage || fromPct || null;
+  const dir = require("path").join(require("os").homedir(), ".claude", "state");
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(require("path").join(dir, "context-latest.json"), JSON.stringify({
+    written_at: Date.now() / 1000, cwd: (j.workspace && j.workspace.current_dir) || j.cwd || process.cwd(),
+    session_id: j.session_id || null, context_tokens: ctx, used_percentage: cw.used_percentage || null,
+    context_window_size: cw.context_window_size || null
+  }));
+} catch {}

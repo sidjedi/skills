@@ -24,6 +24,8 @@ The issue tracker should have been provided to you. If not, tell the user to run
 
 4. **Visual checks, in one batch.** Call the Skill tool with `browser-harness` and, in a single browser session, check the visual ACs that step 2 listed (`visual: <screen>` in the spec). One capture per AC. Visual ACs not listed reuse the evidence already in their ticket's record. If a check fails, say which AC and what you saw; do not edit code.
 
+   If the `## Agent skills` block lists a quality doc (`docs/agents/quality.md`), run the checks it names too. Their output goes into the PR Evidence; warnings do not stop the PR.
+
 5. **Result of the suite.** Read it when it finishes. Green is the only pass. Red or flaky: report the failing tests, do not "fix" tests to pass.
 
 6. **If anything failed** (structural gap needing code, a failed visual check, a red suite): stop here. Report each item with its AC, and do not open a PR. The user decides.

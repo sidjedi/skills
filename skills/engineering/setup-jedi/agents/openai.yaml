@@ -1,0 +1,5 @@
+interface:
+  display_name: "Setup Jedi"
+  short_description: "Initialize a project for the Jedi workflow"
+policy:
+  allow_implicit_invocation: false

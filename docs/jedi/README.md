@@ -50,10 +50,12 @@ ideia / feature  ---> /grill-with-docs ---> /to-spec ---> /to-tickets ---> imple
 | `tdd` × verificação visual | `tdd` para comportamento no seam declarado. Visual é navegador. Nunca escrever teste para validar aparência. |
 | `triage` × `to-tickets` | `triage` é só para issues **de fora**. Tickets do `to-tickets` já nascem prontos; não triar. |
 | Script bloqueia × agente discorda | O agente pode seguir, **registrando** `Script override: <o que e por quê>` no `## Comments` do ticket e avisando no fechamento. Nunca em silêncio. |
+| `setup-jedi` × `setup-matt-pocock-skills` | `setup-jedi` prepara o projeto (stack, `AGENTS.md`, glossário, testes, máquina) e chama o `setup-matt-pocock-skills` por último. O setup do Matt segue dono do tracker, dos labels e de `docs/agents/`. |
 | Ticket antigo (sem `Entrega:`) | Os scripts só **avisam** sobre commit ausente; as checagens rígidas valem para tickets novos. |
 
 ## 4. A aplicação ideal
 
+0. Projeto novo ou ainda sem `AGENTS.md`: `/setup-jedi` uma vez (stack, `AGENTS.md`, glossário, testes, máquina). Termina chamando o `setup-matt-pocock-skills`. Para mudar o que ela instala, leia `skills/engineering/setup-jedi/DESIGN.md`.
 1. Projeto novo e grande: `/to-roadmap` uma vez. Depois, para cada etapa: grilling curto → `/to-spec` (da etapa) → `/to-tickets` → `/implement-spec` (ou `/implement` em lotes) → `/finish-spec` → etapa `done` → próxima.
 2. Feature num projeto existente: `/grill-with-docs` → `/to-spec` → `/to-tickets` → implementar → `/finish-spec`.
 3. Ajuste pequeno e óbvio: `/implement` direto sobre um ticket ou pedido, sem spec.
@@ -95,5 +97,5 @@ git diff HEAD...upstream/main -- skills/engineering/<skill>    # ver antes de ac
 git push                                                       # depois: npx skills@latest update
 ```
 
-Skills alteradas aqui: `to-spec`, `to-tickets`, `implement`, `implement-spec`, `code-review`. Novas: `to-roadmap`, `finish-spec`.
+Skills alteradas aqui: `to-spec`, `to-tickets`, `implement`, `implement-spec`, `code-review`. Novas: `to-roadmap`, `finish-spec`, `setup-jedi`.
 Ao resolver conflito, preserve as nossas adições e aceite as melhorias dele.
