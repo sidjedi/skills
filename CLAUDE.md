@@ -1,3 +1,4 @@
+Este é um repositorio personalizado, leia 'skills\docs\jedi\README.md' para comprrender o foco das mudanças. O restante é baseado ou identico ao repo original, que é citado, referenciado e desenvolvido abaixo:
 Skills are organized into bucket folders under `skills/`:
 
 - `engineering/`: daily code work
