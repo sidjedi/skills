@@ -5,6 +5,38 @@ Este fork mantém o método do Matt (fatias verticais, grilling, TDD, review em 
 acrescenta **rastreabilidade por critério, verificação por script, lotes de tickets e um fechamento de branch**.
 Foco: MVPs lançados rápido, **sem microgerenciamento nem babysitting**.
 
+## Rotina: ver se o Matt publicou novidades
+
+Rode de vez em quando, no clone `G:\Antigravity\matt-jedi-skills\skills`:
+
+```bash
+git fetch upstream
+git rev-list --count jedi..upstream/main        # quantos commits novos o Matt tem
+git log --oneline jedi..upstream/main           # quais são
+git diff --stat jedi...upstream/main            # que arquivos mudaram
+```
+
+Se houver novidade, veja antes o que ele mudou nas skills que nós também alteramos
+(`to-spec`, `to-tickets`, `implement`, `implement-spec`, `code-review`, `setup-matt-pocock-skills`):
+
+```bash
+git diff jedi...upstream/main -- skills/engineering/<skill>
+```
+
+Para trazer, com as suas mudanças já commitadas na `jedi`:
+
+```bash
+git checkout jedi
+git merge upstream/main     # conflito só onde ele e nós mudamos a mesma linha
+git push origin jedi        # depois: npx skills@latest update
+```
+
+Manter a `main` do fork como espelho do Matt:
+
+```bash
+git checkout main && git merge --ff-only upstream/main && git push origin main && git checkout jedi
+```
+
 ## 1. O processo, de ponta a ponta
 
 ```
@@ -88,14 +120,6 @@ npx skills@latest add sidjedi/skills#jedi -a claude-code      # inclua setup-mat
 Atualizar o que já está instalado: `npx skills@latest update`. Skills novas: repetir o `add`.
 Não instalar o plugin do Matt junto, para não duplicar as skills.
 
-Trazer novidades do Matt para o fork:
-
-```bash
-git checkout jedi
-git fetch upstream && git merge upstream/main                  # conflito só onde ele mexeu no que alteramos
-git diff HEAD...upstream/main -- skills/engineering/<skill>    # ver antes de aceitar
-git push                                                       # depois: npx skills@latest update
-```
 
 Skills alteradas aqui: `to-spec`, `to-tickets`, `implement`, `implement-spec`, `code-review`. Novas: `to-roadmap`, `finish-spec`, `setup-jedi`.
 Ao resolver conflito, preserve as nossas adições e aceite as melhorias dele.
