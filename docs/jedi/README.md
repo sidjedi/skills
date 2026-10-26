@@ -82,12 +82,13 @@ ideia / feature  ---> /grill-with-docs ---> /to-spec ---> /to-tickets ---> imple
 | `tdd` × verificação visual | `tdd` para comportamento no seam declarado. Visual é navegador. Nunca escrever teste para validar aparência. |
 | `triage` × `to-tickets` | `triage` é só para issues **de fora**. Tickets do `to-tickets` já nascem prontos; não triar. |
 | Script bloqueia × agente discorda | O agente pode seguir, **registrando** `Script override: <o que e por quê>` no `## Comments` do ticket e avisando no fechamento. Nunca em silêncio. |
-| `setup-jedi` × `setup-matt-pocock-skills` | `setup-jedi` prepara o projeto (stack, `AGENTS.md`, glossário, testes, máquina) e chama o `setup-matt-pocock-skills` por último. O setup do Matt segue dono do tracker, dos labels e de `docs/agents/`. |
+| `setup-jedi` × `setup-matt-pocock-skills` | `setup-jedi` prepara o projeto (stack, `AGENTS.md`, glossário, testes, máquina, ferramentas opcionais) e chama o `setup-matt-pocock-skills` por último. O setup do Matt segue dono do tracker, dos labels e de `docs/agents/`. |
+| Ferramenta opcional × setup do projeto | Cada uma é oferecida no passo 6 do `setup-jedi`, com confirmação própria, separada do resumo do passo 3. Sem "sim" explícito nada é instalado. Uma regra que só existe por causa de uma ferramenta vai no snippet de `AGENTS.md` do arquivo `tools/<ferramenta>.md`, nunca numa skill genérica. Remover uma ferramenta é apagar o arquivo dela. |
 | Ticket antigo (sem `Entrega:`) | Os scripts só **avisam** sobre commit ausente; as checagens rígidas valem para tickets novos. |
 
 ## 4. A aplicação ideal
 
-0. Projeto novo ou ainda sem `AGENTS.md`: `/setup-jedi` uma vez (stack, `AGENTS.md`, glossário, testes, máquina). Termina chamando o `setup-matt-pocock-skills`. Para mudar o que ela instala, leia `skills/engineering/setup-jedi/DESIGN.md`.
+0. Projeto novo ou ainda sem `AGENTS.md`: `/setup-jedi` uma vez (stack, `AGENTS.md`, glossário, testes, máquina). Oferece, uma a uma e com confirmação própria, as ferramentas opcionais de `skills/engineering/setup-jedi/tools/`. Termina chamando o `setup-matt-pocock-skills`. Para mudar o que ela instala, leia `skills/engineering/setup-jedi/DESIGN.md`.
 1. Projeto novo e grande: `/to-roadmap` uma vez. Depois, para cada etapa: grilling curto → `/to-spec` (da etapa) → `/to-tickets` → `/implement-spec` (ou `/implement` em lotes) → `/finish-spec` → etapa `done` → próxima.
 2. Feature num projeto existente: `/grill-with-docs` → `/to-spec` → `/to-tickets` → implementar → `/finish-spec`.
 3. Ajuste pequeno e óbvio: `/implement` direto sobre um ticket ou pedido, sem spec.

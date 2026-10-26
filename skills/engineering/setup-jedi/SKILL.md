@@ -14,7 +14,7 @@ Nothing is overwritten. What exists stays; what differs from the template is sho
 
 2. **Brief and stack.** New repo: ask what the project is, for whom, and what ships first, in one round. From the answer, suggest 2 or 3 stacks from `stacks/` with a one-line trade-off each, plus "other" (`stacks/generic.md`). Existing repo: take the stack from its manifest and ask nothing. Done when the stack is chosen.
 
-3. **Overview, one confirmation.** Read `stacks/<stack>.md` and show everything you will do: the scaffold command, the files, the test runner, which quality checks to enable (the fast ones in lint, the slow ones for the PR), each with its limit, and the machine changes (step 5). The user can change any item, limits included; apply what they say. Write nothing before this is confirmed.
+3. **Overview, one confirmation.** Read `stacks/<stack>.md` and show everything you will do: the scaffold command, the files, the test runner, which quality checks to enable (the fast ones in lint, the slow ones for the PR), each with its limit, and the machine changes (step 5). Optional tools (step 6) are not part of this overview: they have their own confirmation. The user can change any item, limits included; apply what they say. Write nothing before this is confirmed.
 
 4. **Scaffold and write.**
    - New repo: run the stack's create command.
@@ -31,10 +31,17 @@ Nothing is overwritten. What exists stays; what differs from the template is sho
    - **Browser Harness:** installed and responding. If not, follow its `install.md`.
    - **Other tools** (`uv`, `pnpm`, `node`, `git`, `gh`, `rtk`): offer only the ones this project's stack uses and the machine lacks.
 
-   Hooks are left alone unless a skill requires one.
+   Hooks are left alone unless a skill requires one or the user accepts an optional tool in step 6.
 
-6. **Git.** If the folder is not a repo, `git init` and one initial commit, after showing what enters it. Create no remote and push nothing.
+6. **Optional tools.** Separate from everything above, with its own confirmation. For each file in `tools/` (a new tool is a new file there; if the folder is missing or empty, skip this step):
+   - Already installed: skip it and say so.
+   - Read its `Inform and ask` section and tell the user what applies (for example an existing `ANTHROPIC_BASE_URL`). The user decides; never treat it as an automatic block.
+   - Run its `Requirements`; if one fails, name it and skip.
+   - Show its `Confirm` block and wait for an explicit yes or no, one tool at a time. Without a yes, change nothing. A no is final for this run and is listed in the reply.
+   - On yes: back up each config file it touches as `<name>.bak-antes-setup-jedi`, run `Install`, apply its `AGENTS.md` snippet if it has one, then run `Verify`. A command the file marks as not run yet is run once in a scratch folder first.
 
-7. **Skills docs.** Call the Skill tool with `setup-matt-pocock-skills`. It edits `AGENTS.md`; tell it which glossary file the repo uses, and have it list `docs/agents/testing.md` and `docs/agents/quality.md` in the `## Agent skills` block, the only pointer in `AGENTS.md`.
+7. **Git.** If the folder is not a repo, `git init` and one initial commit, after showing what enters it. Create no remote and push nothing.
 
-8. **Reply** with what was created, what already existed and was kept, and any step the user declined.
+8. **Skills docs.** Call the Skill tool with `setup-matt-pocock-skills`. It edits `AGENTS.md`; tell it which glossary file the repo uses, and have it list `docs/agents/testing.md` and `docs/agents/quality.md` in the `## Agent skills` block, the only pointer in `AGENTS.md`.
+
+9. **Reply** with what was created, what already existed and was kept, and any step or optional tool the user declined.
