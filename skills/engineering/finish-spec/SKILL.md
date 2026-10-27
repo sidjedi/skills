@@ -1,7 +1,7 @@
 ---
 name: finish-spec
 description: "Close a finished spec's branch: run the structural checks, the full test suite once, the visual checks, then write the PR body with real evidence and open the PR. Does not review code."
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 
 Closes the branch of a spec whose tickets are implemented. `/implement-spec` calls it after `code-review` and its fixes; call it by hand after implementing tickets with `/implement` in layers.
