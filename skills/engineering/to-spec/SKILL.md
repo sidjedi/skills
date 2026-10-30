@@ -55,7 +55,7 @@ One row per verifiable behaviour, grouped under the story it serves (`AC-<story>
 | AC-1.1 | The account page shows the balance of every account | test |
 | AC-1.2 | The balance card is readable on a phone | visual: account page, 390px |
 
-Proof is one of: `test` (a behaviour test at the seam above), `cmd: <command>` (a command whose exit code settles it), or `visual: <screen/route>` (checked in the browser with Browser Harness, never as a test; see the project's `AGENTS.md`). The exact test id is recorded later, in the ticket.
+Proof is one of: `test` (a behaviour test at the seam above), `cmd: <command>` (a command whose exit code settles it), or `visual: <screen/route>` (checked in the browser with Browser Harness, never as a test; see the project's `AGENTS.md`). The exact test id is recorded later, in the ticket. Choose `cmd:` when a cheap command settles the AC, and `test` when there is logic or risk to protect; the project's `AGENTS.md` holds the exact line.
 
 ## Implementation Decisions
 

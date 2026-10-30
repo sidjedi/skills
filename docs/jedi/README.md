@@ -55,7 +55,7 @@ ideia / feature  ---> /grill-with-docs ---> /to-spec ---> /to-tickets ---> imple
 4. **Tickets:** `/to-tickets` quebra em fatias verticais **pequenas**, cada uma com `**Entrega:** US-…, AC-…` e `**Tamanho:** P|M|G`. Não une fatias para ter menos tickets.
 5. **Implementar** (um dos dois):
    - `/implement <tickets…>`: um ou vários tickets pequenos, em sequência, na mesma janela de contexto. Para quando o contexto passa de 200k tokens (pedir `/compact` e chamar de novo).
-   - `/implement-spec`: spec inteiro. Agrupa tickets em **lanes** (cadeias sequenciais de ~150k estimados, um subagente por lane), lanes independentes em paralelo, integração sem squash. Termina chamando `code-review` e depois `finish-spec`.
+   - `/implement-spec`: spec inteiro. Agrupa tickets em **lanes** (cadeias sequenciais: no máximo 4 P, 3 M ou 2 G, um subagente por lane), poucas lanes, em paralelo só quando independentes, integração sem squash. Cada lane roda `tdd`, testes relacionados, commit e registro por ticket; sem `code-review` dentro da lane. Termina chamando `code-review` e depois `finish-spec`.
 6. **Fechar:** `/finish-spec` roda os scripts, a suíte completa **uma vez**, as checagens visuais em lote, escreve o PR com evidência real e abre o PR.
 
 ## 2. Convenções que as skills e os scripts esperam
@@ -72,10 +72,10 @@ ideia / feature  ---> /grill-with-docs ---> /to-spec ---> /to-tickets ---> imple
 | Situação ambígua | Regra |
 |---|---|
 | `code-review` × `finish-spec` | `code-review` **julga o código** (Standards + Spec). `finish-spec` **não revisa**: confere registro, provas, suíte e tela, e abre o PR. Rodam em sequência, nunca um dentro do outro. |
-| `code-review` por ticket × no fim do spec | Mesma skill. No `/implement` roda a cada ticket (diff pequeno). No `/implement-spec` roda **uma vez** na branch de integração. Não repetir no `finish-spec`. |
+| `code-review` por ticket × no fim do spec | Mesma skill. No `/implement` roda a cada ticket (diff pequeno). No `/implement-spec` roda **uma vez** na branch de integração, pelo orquestrador (nunca dentro de uma lane). Não repetir no `finish-spec`. |
 | `finish-spec` × `pr` | `pr` só **escreve o corpo** do PR. `finish-spec` junta a evidência, chama `pr` e abre o PR. Não chame `pr` sozinho para fechar um spec. |
-| `implement` × `implement-spec` | Poucos tickets ou trabalho linear: `/implement`. Spec inteiro com tickets independentes: `/implement-spec`. `implement-spec` roda o ciclo do `implement` dentro de cada lane. |
-| Gate de contexto (`context_gate.py`) × lanes | O gate vale só no `/implement` na sessão principal. Dentro de uma lane vale o orçamento estimado (~150k); o gate é ignorado lá. |
+| `implement` × `implement-spec` | Poucos tickets ou trabalho linear: `/implement`. Spec inteiro com tickets independentes: `/implement-spec`. Dentro de cada lane o `implement-spec` roda `tdd` por ticket, registro e checagem, mas **não** o `code-review` nem o gate do `implement`. |
+| Gate de contexto (`context_gate.py`) × lanes | O gate vale só no `/implement` na sessão principal. Dentro de uma lane vale o tamanho da lane (4 P, 3 M ou 2 G); o gate é ignorado lá, porque lê o contexto da sessão principal e não o do subagente. |
 | `to-roadmap` × `wayfinder` × `grill-with-docs` | `wayfinder`: neblina grande, produz decisões. `to-roadmap`: já sabe o rumo, ordena etapas verticais. `grill-with-docs`: afia **uma** ideia/etapa. O `to-roadmap` pode usar o grilling por dentro; não chamar os três para o mesmo assunto. |
 | `to-spec` × etapa do roadmap | Uma etapa do roadmap = um spec. Nunca spec de várias etapas. |
 | Roadmap × tickets | Roadmap ordena **etapas**. Tickets ordenam **fatias** dentro de um spec. Não duplicar um no outro. |
